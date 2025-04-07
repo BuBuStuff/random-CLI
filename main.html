@@ -95,10 +95,54 @@
 				let targetTimeString = command.split(' ')[1];
 				let secondsUntilTarget = getTimeDifferenceInSeconds(targetTimeString);
 				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
-            } else if (command.includes('cmd2')) {
-				var inputText = command.split(' ')[1];
 
-				output.textContent = `output message, input: ${inputText}`;
+
+
+				
+            } else if (command.includes('cipher')) {
+				var msg1 = command.split(' ')[2];
+				class SuperSecretCipher {
+  					constructor(key) {
+    				this.key = key;
+  				}
+ encrypt(message) {
+    let encryptedMessage = '';
+    let keyIndex = 0;
+    for (let i = 0; i < message.length; i++) {
+      let messageChar = message.charCodeAt(i);
+      let keyChar = this.key.charCodeAt(keyIndex % this.key.length);
+      // Encrypt by shifting the char code based on the key
+      encryptedMessage += String.fromCharCode(messageChar + keyChar);
+      keyIndex++;
+    }
+    return encryptedMessage;
+  }
+
+  // Function to decrypt a message using the same key
+  decrypt(encryptedMessage) {
+    let decryptedMessage = '';
+    let keyIndex = 0;
+    for (let i = 0; i < encryptedMessage.length; i++) {
+      let encryptedChar = encryptedMessage.charCodeAt(i);
+      let keyChar = this.key.charCodeAt(keyIndex % this.key.length);
+      // Decrypt by reversing the shift
+      decryptedMessage += String.fromCharCode(encryptedChar - keyChar);
+      keyIndex++;
+    }
+    return decryptedMessage;
+  }
+}
+				const secretKey = command.split(' ')[3]; // Change this key for different encryption
+const cipher = new SuperSecretCipher(secretKey);
+
+				if (command.split(' ')[1] === "decrypt") {
+					var outputMsg1 = cipher.decrypt(command.split(' ')[2]);
+				} else if (command.split(' ')[1] === "encrypt") {
+					var outputMsg1 = cipher.encrypt(command.split(' ')[2]);
+				}
+
+				output.textContent = `output message, ${outputMsg1}`;
+				// cipher encrypt message eatingSugarNoPapa
 			} else if (command === 'cmd3') {
                 output.textContent = "Available commands: help, clear";
             } else if (command === 'cmd4') {
