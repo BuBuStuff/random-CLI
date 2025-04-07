@@ -68,7 +68,9 @@
                 output.textContent = helpOutput;
             } else if (command.includes('dataurl')) {
 				var ncode = command.split(' / $' + ' % ');
+				terminal.innerHTML = '';
 				var b64code = `data:text/html;base64,` + atob(ncode);
+				output.textContent = b64code;
 			} else if (command.includes('gs')) {
 				function convertToTime(dateString) {
   					let hours = parseInt(dateString.slice(0, 2), 10);
