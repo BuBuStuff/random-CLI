@@ -68,7 +68,7 @@
                 output.textContent = helpOutput;
             } else if (command.includes('dataurl')) {
 				var ncode = command.split(' / $' + ' % ');
-				terminal.innerHTML = '';
+				// terminal.innerHTML = '';
 				var b64code = `data:text/html;base64,` + atob(ncode);
 				output.textContent = b64code;
 			} else if (command.includes('gs')) {
@@ -95,9 +95,11 @@
 				let targetTimeString = command.split(' ')[1];
 				let secondsUntilTarget = getTimeDifferenceInSeconds(targetTimeString);
 				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
-            } else if (command === 'cmd2') {
-                output.textContent = "Available commands: help, clear";
-            } else if (command === 'cmd3') {
+            } else if (command.includes('cmd2')) {
+				var inputText = command.split(' ')[1];
+
+				output.textContent = `output message, input: ${inputText}`;
+			} else if (command === 'cmd3') {
                 output.textContent = "Available commands: help, clear";
             } else if (command === 'cmd4') {
                 output.textContent = "Available commands: help, clear";
