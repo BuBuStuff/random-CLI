@@ -132,7 +132,7 @@
     return decryptedMessage;
   }
 }
-				const secretKey = command.split(' ')[3]; // Change this key for different encryption
+				const secretKey = command.split(' ')[3];
 const cipher = new SuperSecretCipher(secretKey);
 
 				if (command.split(' ')[1] === "decrypt") {
@@ -141,8 +141,8 @@ const cipher = new SuperSecretCipher(secretKey);
 					var outputMsg1 = cipher.encrypt(command.split(' ')[2]);
 				}
 
-				output.textContent = `output message, ${outputMsg1}`;
-				// cipher encrypt message eatingSugarNoPapa
+				output.textContent = `${outputMsg1}`;
+				// cipher encrypt message key
 			} else if (command === 'cmd3') {
                 output.textContent = "Available commands: help, clear";
             } else if (command === 'cmd4') {
