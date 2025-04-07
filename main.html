@@ -65,7 +65,7 @@
                 terminal.innerHTML = '';
             } else if (command === 'help') {
                 output.textContent = "Available commands: help, clear, gs";
-				output.textContent = "gs <time[1420]>: gets the number of seconds till the time given from now.";
+				//output.textContent = "gs <time[1420]>: gets the number of seconds till the time given from now.";
             } else if (command.includes('cmd1')) {
 				
 			} else if (command.includes('gs')) {
@@ -91,7 +91,7 @@
 				}
 				let targetTimeString = command.split(' ')[1];
 				let secondsUntilTarget = getTimeDifferenceInSeconds(targetTimeString);
-				output.textContent = `${secondsUntilTarget}s`;
+				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
             } else if (command === 'cmd2') {
                 output.textContent = "Available commands: help, clear";
             } else if (command === 'cmd3') {
