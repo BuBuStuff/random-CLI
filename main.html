@@ -35,7 +35,6 @@
 </head>
 <body>
     <div id="terminal">
-		<b>BuBu Command Line Interface - cmdSet General</b>
     </div>
     <div id="inputLine">
         <span>&gt;</span>
@@ -61,6 +60,7 @@
             commandOutput.textContent = `$ ${command}`;
             terminal.appendChild(commandOutput);
             const output = document.createElement('div');
+			output.textContent = "BuBu CLI - General CmdSet";
             if (command === 'clear') {
                 terminal.innerHTML = '';
             } else if (command === 'help') {
