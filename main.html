@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI</title>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #1e1e1e;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+        }
+        #terminal {
+            padding: 10px;
+            height: 100vh;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        #inputLine {
+            display: flex;
+        }
+        #inputLine span {
+            margin-right: 5px;
+        }
+        input {
+            background: transparent;
+            color: #00ff00;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+    </div>
+    <div id="inputLine">
+        <span>&gt;</span>
+        <input type="text" id="userInput" autofocus onkeydown="handleInput(event)" />
+    </div>
+
+    <script>
+        const terminal = document.getElementById("terminal");
+        const userInput = document.getElementById("userInput");
+
+        function handleInput(event) {
+            if (event.key === 'Enter') {
+                const command = userInput.value.trim();
+                if (command) {
+                    executeCommand(command);
+                }
+                userInput.value = '';
+            }
+        }
+
+        function executeCommand(command) {
+            const commandOutput = document.createElement('div');
+            commandOutput.textContent = `$ ${command}`;
+            terminal.appendChild(commandOutput);
+            const output = document.createElement('div');
+            if (command === 'clear') {
+                terminal.innerHTML = '';
+            } else if (command === 'help') {
+                output.textContent = "Available commands: help, clear, gs";
+				output.textContent = "gs <time[1420]>: gets the number of seconds till the time given from now.";
+            } else if (command.includes('cmd1')) {
+				
+			} else if (command.includes('gs')) {
+				function convertToTime(dateString) {
+  					let hours = parseInt(dateString.slice(0, 2), 10);
+  					let minutes = parseInt(dateString.slice(2), 10);
+					let currentDate = new Date();
+					currentDate.setHours(hours);
+					currentDate.setMinutes(minutes);
+					currentDate.setSeconds(0);
+					currentDate.setMilliseconds(0);
+					return currentDate;
+				}
+				function getTimeDifferenceInSeconds(targetTimeString) {
+  					let targetTime = convertToTime(targetTimeString);
+					let now = new Date();
+					if (targetTime < now) {
+    					targetTime.setDate(targetTime.getDate() + 1);
+					}
+					let timeDifferenceInMilliseconds = targetTime - now;
+					let timeDifferenceInSeconds = Math.floor(timeDifferenceInMilliseconds / 1000);
+					return timeDifferenceInSeconds;
+				}
+				let targetTimeString = command.split(' ')[1];
+				let secondsUntilTarget = getTimeDifferenceInSeconds(targetTimeString);
+				output.textContent = `${secondsUntilTarget}s`;
+            } else if (command === 'cmd2') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd3') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd4') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd5') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd6') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd7') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd8') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd9') {
+                output.textContent = "Available commands: help, clear";
+            } else if (command === 'cmd0') {
+                output.textContent = "Available commands: help, clear";
+            } else {
+                output.textContent = `Command not recognized: ${command}`;
+            }
+
+            terminal.appendChild(output);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    </script>
+</body>
+</html>
