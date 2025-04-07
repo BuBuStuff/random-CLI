@@ -64,10 +64,11 @@
             if (command === 'clear') {
                 terminal.innerHTML = '';
             } else if (command === 'help') {
-                output.textContent = "Available commands: help, clear, gs";
-				//output.textContent = "gs <time[1420]>: gets the number of seconds till the time given from now.";
-            } else if (command.includes('cmd1')) {
-				
+				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\ndataurl / $" + " % <htmlCode>";
+                output.textContent = helpOutput;
+            } else if (command.includes('dataurl')) {
+				var ncode = command.split(' / $' + ' % ');
+				var b64code = `data:text/html;base64,` + atob(ncode);
 			} else if (command.includes('gs')) {
 				function convertToTime(dateString) {
   					let hours = parseInt(dateString.slice(0, 2), 10);
