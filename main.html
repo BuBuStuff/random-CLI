@@ -76,7 +76,7 @@
             if (command === 'clear') {
                 terminal.innerHTML = '';
             } else if (command === 'help') {
-				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\n<UNSTABLE>dataurl / $" + " % <htmlCode>: converts HTML code into a runnable Data URL.\ndt <date[YYYY-MM-DD]> <date[YYYY-MM-DD]>: gets the number of days between two dates.\nuuid generate: generates a UUID.\ncolorpicker: loads a color picker window.";
+				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\n<UNSTABLE>dataurl / $" + " % <htmlCode>: converts HTML code into a runnable Data URL.\ndt <date[YYYY-MM-DD]> <date[YYYY-MM-DD]>: gets the number of days between two dates.\nuuid generate: generates a UUID.\ncolorpicker: loads a color picker window.\necho <message>: outputs the message.\nclearecho <message>: outputs the message without showing the command.";
                 output.textContent = helpOutput;
             } else if (command.includes('dataurl')) {
 				var ncode = command.split(' / $' + ' % ');
