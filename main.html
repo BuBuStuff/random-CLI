@@ -76,7 +76,7 @@
             if (command === 'clear') {
                 terminal.innerHTML = '';
             } else if (command === 'help') {
-				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\n<UNSTABLE>dataurl / $" + " % <htmlCode>: converts HTML code into a runnable Data URL.\ndt <date[YYYY-MM-DD]> <date[YYYY-MM-DD]>: gets the number of days between two dates.\nuuid generate: generates a UUID.";
+				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\n<UNSTABLE>dataurl / $" + " % <htmlCode>: converts HTML code into a runnable Data URL.\ndt <date[YYYY-MM-DD]> <date[YYYY-MM-DD]>: gets the number of days between two dates.\nuuid generate: generates a UUID.\ncolorpicker: loads a color picker window.";
                 output.textContent = helpOutput;
             } else if (command.includes('dataurl')) {
 				var ncode = command.split(' / $' + ' % ');
@@ -449,7 +449,7 @@ output.textContent = `${days} ${formDays} between ${date1} and ${date2}`;
 
 				
       // Open a new window
-      const colorWindow = window.open('', '', 'width=300,height=200');
+      const colorWindow = window.open('', '', 'width=250,height=150,left=600');
 
       // Write HTML content for the color picker into the new window
       colorWindow.document.write(`
@@ -458,14 +458,13 @@ output.textContent = `${days} ${formDays} between ${date1} and ${date2}`;
           <title>Color Picker</title>
         </head>
         <body onload="document.getElementByID('colorpicker').click();" style="background-color:black;">
-          <input onchange="submitColor();" type="color" id="colorpicker">
-		  <br>
+          <input onchange="window.close();" oninput="submitColor();" type="color" id="colorpicker">
+		  <br><br>
 		  <small style="color: #00ff00;font-family: 'Courier New', Courier, monospace;">Click on the button above to select a color, then click outside this window to confirm your selection.</small>
           <script>
 		  function submitColor() {
               var selectedColor = document.getElementById('colorpicker').value;
               window.opener.updateColor(selectedColor);
-              window.close();
 			}
           </sc` + `ript>
         </body>
@@ -476,6 +475,7 @@ output.textContent = `${days} ${formDays} between ${date1} and ${date2}`;
 		output.textContent = color;
 		// output.innerHTML = `Selected color: <span style="background-color:` + getComplimentaryColor(color) + `;background-color:` + color + `;">` + color;
     }
+
 
 	function getComplementaryColor(hex) {
       // Remove the '#' symbol and convert to RGB
