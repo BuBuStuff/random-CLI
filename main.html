@@ -108,7 +108,8 @@
 				let secondsUntilTarget = getTimeDifferenceInSeconds(targetTimeString);
 				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
 
-
+				setInterval(function() {secondsUntilTarget = secondsUntilTarget - 1; 				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
+}, 1000);
 
 				
             } else if (command.includes('cipher')) {
