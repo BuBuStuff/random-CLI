@@ -83,6 +83,14 @@
 				// terminal.innerHTML = '';
 				var b64code = `data:text/html;base64,` + atob(ncode);
 				output.textContent = b64code;
+
+
+////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+				
 			} else if (command.includes('gs')) {
 				function convertToTime(dateString) {
   					let hours = parseInt(dateString.slice(0, 2), 10);
@@ -106,11 +114,64 @@
 				}
 				let targetTimeString = command.split(' ')[1];
 				let secondsUntilTarget = getTimeDifferenceInSeconds(targetTimeString);
-				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
+	 			if (command.includes('wgs')) {
+					var gsWindow = window.open('', '', 'width=250,height=150,left=600');
 
+					gsWindow.document.write(`
+					<style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #1e1e1e;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+        }
+        #terminal {
+            padding: 10px;
+            height: 100vh;
+			width: 100vw;
+            overflow-y: auto;
+            white-space: pre-wrap;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+        }
+		p {
+            font-size: 30vw;
+			color: #00ff00;
+            text-align: center;
+            transform-origin: center;
+            transform: scale(1);
+        }
+    </style>
+	<body>
+	<div id="terminal">
+	<p>` + secondsUntilTarget + `</p>
+	</div>
+	<script>
+	var sut = ` + secondsUntilTarget + `;
+	setInterval(function() {
+	sut = sut-1;
+		document.querySelector('p').innerHTML = sut;
+	}, 1000);
+	
+	</scr` + `ipt>
+	</body>
+					`);
+function bringWindowToFront() {
+  if (gsWindow) {
+    gsWindow.focus();
+  }
+}
+
+setInterval(bringWindowToFront, 50);
+	 			} else {
+				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
+				
 				setInterval(function() {secondsUntilTarget = secondsUntilTarget - 1; 				output.textContent = `Time until ${targetTimeString}: ${secondsUntilTarget}`;
 }, 1000);
-
+}
 				
             } else if (command.includes('cipher')) {
 
