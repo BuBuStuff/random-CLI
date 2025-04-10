@@ -76,7 +76,7 @@
             if (command === 'clear') {
                 terminal.innerHTML = '';
             } else if (command === 'help') {
-				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\n<UNSTABLE>dataurl / $" + " % <htmlCode>: converts HTML code into a runnable Data URL.\ndt <date[YYYY-MM-DD]> <date[YYYY-MM-DD]>: gets the number of days between two dates.\nuuid generate: generates a UUID.\ncolorpicker: loads a color picker window.\necho <message>: outputs the message.\nclearecho <message>: outputs the message without showing the command.";
+				var helpOutput = "gs <time24H>: gets the number of seconds till time given from now.\n<UNSTABLE>dataurl / $" + " % <htmlCode>: converts HTML code into a runnable Data URL.\ndt <date[YYYY-MM-DD]> <date[YYYY-MM-DD]>: gets the number of days between two dates.\nuuid generate: generates a UUID.\ncolorpicker: loads a color picker window.\necho <message>: outputs the message.\nclearecho <message>: outputs the message without showing the command.\nrepeat <number> <command>: repeats a command";
                 output.textContent = helpOutput;
             } else if (command.includes('dataurl')) {
 				var ncode = command.split(' / $' + ' % ');
@@ -415,13 +415,19 @@ if (days == 1) {
 	var formDays = "days";
 }
 output.textContent = `${days} ${formDays} between ${date1} and ${date2}`;
+
+
+				
             } else if (command === 'uuid generate') {
 				const blobUUID = new Blob(['e'], { type: 'text/plain' });
 				var urlr = URL.createObjectURL(blobUUID);
                 output.textContent = urlr.split('/')[1];
 				URL.revokeObjectURL(urlr);
+
+
+				
             } else if (command.includes('repeat')) {
-				if (parseInt(command.split(' ')[1]) < 100) {
+				if (parseInt(command.split(' ')[1]) < 101) {
 					var repeatTimes = parseInt(command.split(' ')[1]);
 					for (let i = 0; i < repeatTimes; i++) {
 						let firstSpace = command.indexOf(' ');
