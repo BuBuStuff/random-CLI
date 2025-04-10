@@ -427,7 +427,7 @@ output.textContent = `${days} ${formDays} between ${date1} and ${date2}`;
 
 				
             } else if (command.includes('repeat')) {
-				if (parseInt(command.split(' ')[1]) < 101) {
+				if (parseInt(command.split(' ')[1]) < 100) {
 					var repeatTimes = parseInt(command.split(' ')[1]);
 					for (let i = 0; i < repeatTimes; i++) {
 						let firstSpace = command.indexOf(' ');
@@ -440,7 +440,7 @@ output.textContent = `${days} ${formDays} between ${date1} and ${date2}`;
 						executeCommand(cmdRepeat, true);
 					}
 				} else {
-					output.textContent = "Repeat cannot be more than 100.";
+					output.textContent = "Repeat cannot be more than 99.";
 				}
 			} else if (command === 'cmd0') {
                 output.textContent = "Available commands: help, clear";
